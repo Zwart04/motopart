@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#09090b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="Tracker sparepart motor, catat jadwal ganti sparepart motor kamu.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icons/logo.svg">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css?v=12">
+<title>Motopart</title>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="icons/icon-192.png" alt="Motopart" width="72" height="72">
+    </div>
+    <h1 class="login-title">Motopart</h1>
+    <p class="login-desc">Masukkan kode akses untuk masuk</p>
+    <div class="login-pin-row">
+      <input type="password" class="login-pin" id="pin1" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="pi(1)" onkeydown="pk(1,event)" autofocus>
+      <input type="password" class="login-pin" id="pin2" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="pi(2)" onkeydown="pk(2,event)">
+      <input type="password" class="login-pin" id="pin3" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="pi(3)" onkeydown="pk(3,event)">
+      <input type="password" class="login-pin" id="pin4" maxlength="1" inputmode="numeric" pattern="[0-9]" oninput="pi(4)" onkeydown="pk(4,event)">
+    </div>
+    <div class="login-error" id="loginError">Kode salah, coba lagi</div>
+    <div class="login-default-pin">Default: <strong>1234</strong>, ganti di Pengaturan setelah masuk</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="app-header" id="appHeader" style="display:none">
+  <div class="app-header-inner">
+    <div class="app-title">
+      <img src="icons/icon-192.png" alt="">M
+    </div>
+    <div class="bike-drop-wrap" id="bikeDropWrap">
+      <button class="bike-drop-btn" id="bikeDropBtn" onclick="toggleDrop()">
+        <span class="bike-bullet" id="dropBullet"></span>
+        <span class="bike-drop-label" id="dropLabel">Pilih motor</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="bike-drop-menu" id="bikeDropMenu"></div>
+    </div>
+    <div class="view-toggle">
+      <button class="theme-btn active" id="viewListBtn" onclick="setView('list')" title="Daftar">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      </button>
+      <button class="theme-btn" id="viewCalBtn" onclick="setView('cal')" title="Kalender">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </button>
+    </div>
+    <div class="header-actions">
+      <button class="theme-btn" onclick="openSettings()" title="Pengaturan">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2m0 18v2m11-11h-2M3 12H1m18.36-7.36-1.42 1.42M5.76 17.94l-1.42 1.42M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/></svg>
+      </button>
+      <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Tema">
+        <svg id="sunIcon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg id="moonIcon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="container" id="app" style="display:none">
+  <div id="bikeView"></div>
+  <div id="calendarView" style="display:none"></div>
+  <div id="partListContainer" style="display:none">
+    <div class="section-h">
+      <h2>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M3 18h1.5M19.5 18H21M9 18h6"/><path d="M12 4v8m0 0-3-3m3 3 3-3"/><path d="M3 10c0-2 1.5-4 4-4h10c2.5 0 4 2 4 4"/></svg>
+        Sparepart
+      </h2>
+      <div class="part-header">
+        <span class="section-count" id="partCount">0</span>
+        <button class="btn btn-prime btn-sm" onclick="openAddPart()">+</button>
+      </div>
+    </div>
+    <div id="partList"></div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/>
+        <path d="M3 18h1.5M19.5 18H21M9 18h6"/><path d="M12 4v8m0 0-3-3m3 3 3-3"/><path d="M3 10c0-2 1.5-4 4-4h10c2.5 0 4 2 4 4"/>
+      </svg>
+      <h3>Belum ada sparepart</h3>
+      <p>Klik + untuk mulai tracking sparepart motor kamu.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BIKE MODAL -->
+<div class="modal-overlay" id="bikeModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="bikeModalTitle">Tambah Motor</div>
+    <form id="bikeForm" onsubmit="saveBike(event)">
+      <div class="fg">
+        <label class="fl">Nama motor</label>
+        <input id="bNick" placeholder="Motor harian" required>
+      </div>
+      <div class="fg">
+        <label class="fl">Merk</label>
+        <select class="form-select" id="bBrand" onchange="bOnBrandChange()">
+          <option value="">Pilih merk</option>
+        </select>
+      </div>
+      <div class="f-row">
+        <div class="fg">
+          <label class="fl">Tipe</label>
+          <select class="form-select" id="bType" onchange="bOnTypeChange()" disabled>
+            <option value="">Pilih tipe</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="fl">Model</label>
+          <select class="form-select" id="bModel" disabled>
+            <option value="">Pilih model</option>
+          </select>
+          <div class="form-hint">Cari model paling mirip, sparepart bisa diedit nanti.</div>
+        </div>
+      </div>
+      <input type="hidden" id="bEditId">
+      <div class="f-actions">
+        <button type="button" class="btn btn-outline" onclick="closeBikeModal()">Batal</button>
+        <button type="button" class="btn btn-outline" id="bDelBtn" style="color:var(--overdue);border-color:var(--overdue);display:none" onclick="deleteBike()">Hapus motor</button>
+        <button type="submit" class="btn btn-prime" id="bSubmit">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SPAREPART MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">Edit Sparepart</div>
+    <form id="partForm" onsubmit="savePart(event)">
+      <div class="fg">
+        <label class="fl">Nama sparepart</label>
+        <input id="fName" placeholder="Oli mesin, busi" required>
+      </div>
+      <div class="f-row">
+        <div class="fg">
+          <label class="fl">Interval KM</label>
+          <input id="fKm" type="number" placeholder="3000" min="0" required>
+          <div class="form-hint">0 jika tidak pakai</div>
+        </div>
+        <div class="fg">
+          <label class="fl">Interval Hari</label>
+          <input id="fDay" type="number" placeholder="90" min="0" required>
+          <div class="form-hint">0 jika tidak pakai</div>
+        </div>
+      </div>
+      <div class="f-row">
+        <div class="fg">
+          <label class="fl">KM ganti terakhir</label>
+          <input id="fLastKm" type="number" placeholder="0" min="0">
+          <div class="form-hint">0 jika lupa</div>
+        </div>
+        <div class="fg">
+          <label class="fl">Tanggal ganti terakhir</label>
+          <div style="display:flex;gap:4px;align-items:center">
+            <input id="fLastDate" type="date" style="flex:1">
+            <button type="button" class="btn btn-ghost btn-sm" onclick="setToday()" style="padding:6px 8px;font-size:11px">Hari ini</button>
+          </div>
+        </div>
+      </div>
+      <div class="est-box" id="estBox" style="display:none">
+        <strong>Estimasi dari odometer</strong>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">KM motor sekarang: <span id="estOdoVal">0</span></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="est-label" id="estLabelA">0 km</span>
+          <input type="range" class="est-slider" id="estSlider" min="0" max="500" value="50">
+          <span class="est-label" id="estLabelB">100%</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px">Estimasi KM terakhir: <strong id="estKmResult">0 km</strong></div>
+        <button type="button" class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="applyEstimate()">Pakai estimasi ini</button>
+      </div>
+      <div class="fg">
+        <label class="fl">Catatan</label>
+        <input id="fNotes" placeholder="Merk, toko beli">
+      </div>
+      <div class="fg">
+        <label class="fl">Pengingat berdasarkan</label>
+        <div style="display:flex;gap:6px">
+          <button type="button" class="btn btn-sm btn-outline rt-btn active" data-v="km" onclick="setRT('km')">KM</button>
+          <button type="button" class="btn btn-sm btn-outline rt-btn" data-v="date" onclick="setRT('date')">Hari</button>
+          <button type="button" class="btn btn-sm btn-outline rt-btn" data-v="both" onclick="setRT('both')">KM + Hari</button>
+        </div>
+      </div>
+      <input type="hidden" id="fEditId">
+      <div class="f-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Batal</button>
+        <button type="button" class="btn btn-outline" id="btnDelete" style="color:var(--overdue);border-color:var(--overdue)" onclick="deleteFromModal()">Hapus</button>
+        <button type="button" class="btn btn-outline" id="btnResetPart" style="color:var(--due);border-color:var(--due)" onclick="resetPartFromModal()">Reset</button>
+        <button type="submit" class="btn btn-prime" id="btnSubmit">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- DAY POPUP -->
+<div class="cal-popup" id="calPopup" onclick="if(event.target===this)closeCalPopup()">
+  <div class="cal-popup-inner">
+    <div class="cal-popup-title" id="calPopupTitle"></div>
+    <div id="calPopupList"></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Pengaturan</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Ganti PIN default <strong>1234</strong> dengan PIN sendiri biar data motor kamu aman.</p>
+    <form onsubmit="event.preventDefault();changePin()">
+      <div class="fg">
+        <label class="fl">PIN Lama</label>
+        <input id="sOldPin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="1234">
+      </div>
+      <div class="fg">
+        <label class="fl">PIN Baru (4 digit)</label>
+        <div class="login-pin-row" style="justify-content:flex-start">
+          <input type="password" class="login-pin" id="sNewPin1" maxlength="1" inputmode="numeric" pattern="[0-9]" style="width:48px;height:54px;font-size:22px">
+          <input type="password" class="login-pin" id="sNewPin2" maxlength="1" inputmode="numeric" pattern="[0-9]" style="width:48px;height:54px;font-size:22px">
+          <input type="password" class="login-pin" id="sNewPin3" maxlength="1" inputmode="numeric" pattern="[0-9]" style="width:48px;height:54px;font-size:22px">
+          <input type="password" class="login-pin" id="sNewPin4" maxlength="1" inputmode="numeric" pattern="[0-9]" style="width:48px;height:54px;font-size:22px">
+        </div>
+      </div>
+      <div id="sSettingsError" class="login-error" style="display:none;text-align:left"></div>
+      <div id="sSettingsSuccess" style="display:none;color:var(--ok);font-size:13px;margin-bottom:8px">PIN berhasil diganti</div>
+      <div class="f-actions">
+        <button type="button" class="btn btn-outline" onclick="closeSettings()">Tutup</button>
+        <button type="submit" class="btn btn-prime">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- PWA -->
+<div class="pwa-banner" id="pwaBanner">
+  <div class="pwa-banner-inner">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+    <div class="pwa-banner-text">
+      <strong>Install Motopart</strong>
+      Pasang di layar utama HP.
+    </div>
+    <button class="btn btn-prime btn-sm" id="installBtn">Install</button>
+    <button class="btn btn-ghost btn-sm" onclick="hidePwaBanner()">Tutup</button>
+  </div>
+</div>
+<div id="toastContainer"></div>
+
+<script>
+const STORAGE='motopart_data',PIN_KEY='motopart_pin';
+const BIKE_DATA={
+honda:{
+  name:'Honda',types:['bebek','matic','sport'],
+  models:{
+    bebek:[
+      {id:'honda-supra-x-125',name:'Supra X 125',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'Rantai + Gir',km:25000,day:730},{name:'Kampas Depan',km:20000,day:365},
+          {name:'Kampas Belakang',km:25000,day:365},{name:'Ban Depan',km:30000,day:1095},
+          {name:'Ban Belakang',km:25000,day:1095},{name:'Aki',km:0,day:730},
+          {name:'Filter Oli',km:8000,day:180},{name:'Minyak Rem',km:0,day:730},
+          {name:'Setel Klep',km:8000,day:365}
+        ]},
+      {id:'honda-supra-gtr-150',name:'Supra GTR 150',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:730},
+          {name:'Filter Oli',km:8000,day:180},{name:'Minyak Rem',km:0,day:730},
+          {name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-revo-110',name:'Revo 110',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'Rantai + Gir',km:25000,day:730},{name:'Kampas Depan',km:20000,day:365},
+          {name:'Kampas Belakang',km:25000,day:365},{name:'Ban Depan',km:30000,day:1095},
+          {name:'Ban Belakang',km:25000,day:1095},{name:'Aki',km:0,day:730},
+          {name:'Minyak Rem',km:0,day:730},{name:'Setel Klep',km:8000,day:365}
+        ]}
+    ],
+    matic:[
+      {id:'honda-beat',name:'Beat eSP',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'honda-vario-125',name:'Vario 125',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'honda-vario-150',name:'Vario 150/160',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-pcx',name:'PCX 150/160',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-scoopy',name:'Scoopy',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'honda-stylo-160',name:'Stylo 160',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-genio',name:'Genio',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:8000,day:180},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730}
+        ]}
+    ],
+    sport:[
+      {id:'honda-cbr150',name:'CBR 150R',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:8000,day:180},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:15000,day:300},{name:'Kampas Belakang',km:20000,day:365},
+          {name:'Ban Depan',km:20000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730},
+          {name:'Setel Klep',km:24000,day:730}
+        ]},
+      {id:'honda-cbr250',name:'CBR 250RR',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:8000,day:180},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:15000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-cb150r',name:'CB 150R',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:8000,day:180},{name:'Rantai + Gir',km:25000,day:730},
+          {name:'Kampas Depan',km:15000,day:365},{name:'Kampas Belakang',km:20000,day:365},
+          {name:'Ban Depan',km:25000,day:1095},{name:'Ban Belakang',km:20000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:24000,day:730}
+        ]},
+      {id:'honda-crf150',name:'CRF 150L',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:8000,day:120},{name:'Rantai + Gir',km:15000,day:365},
+          {name:'Kampas Depan',km:10000,day:180},{name:'Kampas Belakang',km:15000,day:365},
+          {name:'Ban Depan',km:12000,day:730},{name:'Ban Belakang',km:10000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:365},{name:'Air Radiator',km:24000,day:730},
+          {name:'Setel Klep',km:8000,day:365}
+        ]}
+    ]
+  }
+},
+yamaha:{
+  name:'Yamaha',types:['matic','bebek','sport'],
+  models:{
+    matic:[
+      {id:'yamaha-nmax',name:'NMax 155',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Oli Gardan',km:10000,day:365},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365}
+        ]},
+      {id:'yamaha-aerox',name:'Aerox 155',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:270},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:12000,day:270},
+          {name:'Kampas Belakang',km:18000,day:365},{name:'Ban Depan',km:20000,day:1095},
+          {name:'Ban Belakang',km:15000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365}
+        ]},
+      {id:'yamaha-lexi',name:'Lexi 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:270},
+          {name:'Busi',km:6000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'yamaha-mio',name:'Mio M3 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:365},
+          {name:'Busi',km:6000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730}
+        ]},
+      {id:'yamaha-xmax',name:'XMax 250',
+        parts:[
+          {name:'Oli Mesin',km:5000,day:180},{name:'Oli Gardan',km:10000,day:365},
+          {name:'Busi',km:10000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:12000,day:270},
+          {name:'Kampas Belakang',km:15000,day:300},{name:'Ban Depan',km:20000,day:1095},
+          {name:'Ban Belakang',km:15000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365}
+        ]},
+      {id:'yamaha-fazzio',name:'Fazzio 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:365},
+          {name:'Busi',km:6000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'yamaha-grand-filano',name:'Grand Filano 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:365},
+          {name:'Busi',km:6000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730}
+        ]},
+      {id:'yamaha-freego',name:'FreeGo 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:365},
+          {name:'Busi',km:6000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:24000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:24000,day:730},
+          {name:'Aki',km:0,day:730}
+        ]}
+    ],
+    bebek:[
+      {id:'yamaha-jupiter-z1',name:'Jupiter Z1',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:730},
+          {name:'Minyak Rem',km:0,day:730},{name:'Setel Klep',km:10000,day:365}
+        ]},
+      {id:'yamaha-vega-rr',name:'Vega RR',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},
+          {name:'Busi',km:8000,day:180},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:730}
+        ]}
+    ],
+    sport:[
+      {id:'yamaha-r15',name:'R15 V4',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:20000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365},
+          {name:'Setel Klep',km:20000,day:730}
+        ]},
+      {id:'yamaha-r25',name:'R25 / R3',
+        parts:[
+          {name:'Oli Mesin',km:5000,day:90},{name:'Busi',km:10000,day:365},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:15000,day:300},
+          {name:'Ban Depan',km:15000,day:1095},{name:'Ban Belakang',km:12000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365},
+          {name:'Setel Klep',km:24000,day:730}
+        ]},
+      {id:'yamaha-mt15',name:'MT-15',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:20000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365},
+          {name:'Setel Klep',km:20000,day:730}
+        ]},
+      {id:'yamaha-xsr155',name:'XSR 155',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:8000,day:180},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:15000,day:300},{name:'Kampas Belakang',km:20000,day:365},
+          {name:'Ban Depan',km:20000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:10000,day:365},
+          {name:'Minyak Rem',km:0,day:730}
+        ]}
+    ]
+  }
+},
+suzuki:{
+  name:'Suzuki',types:['matic','bebek','sport'],
+  models:{
+    matic:[
+      {id:'suzuki-address',name:'Address 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:270},
+          {name:'Busi',km:8000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:15000,day:540},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:15000,day:540},
+          {name:'Aki',km:0,day:540},{name:'Filter Oli',km:12000,day:365}
+        ]},
+      {id:'suzuki-nex',name:'Nex II',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:270},
+          {name:'Busi',km:8000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'V-Belt / CVT',km:15000,day:540},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:15000,day:540},
+          {name:'Aki',km:0,day:540}
+        ]},
+      {id:'suzuki-burgman',name:'Burgman 125',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Oli Gardan',km:8000,day:270},
+          {name:'Busi',km:8000,day:365},{name:'Filter Udara',km:8000,day:180},
+          {name:'V-Belt / CVT',km:15000,day:540},{name:'Kampas Depan',km:12000,day:300},
+          {name:'Kampas Belakang',km:18000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Roller CVT',km:15000,day:540},
+          {name:'Aki',km:0,day:730},{name:'Minyak Rem',km:0,day:730},
+          {name:'Filter Oli',km:12000,day:365}
+        ]}
+    ],
+    bebek:[
+      {id:'suzuki-satria-f150',name:'Satria F150',
+        parts:[
+          {name:'Oli Mesin',km:2500,day:90},
+          {name:'Busi',km:8000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:300},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:540},
+          {name:'Filter Oli',km:7500,day:270},{name:'Minyak Rem',km:0,day:730}
+        ]}
+    ],
+    sport:[
+      {id:'suzuki-gsx150',name:'GSX R150',
+        parts:[
+          {name:'Oli Mesin',km:4000,day:90},{name:'Busi',km:8000,day:365},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:20000,day:1095},{name:'Ban Belakang',km:15000,day:1095},
+          {name:'Aki',km:0,day:540},{name:'Filter Oli',km:8000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:10000,day:365}
+        ]}
+    ]
+  }
+},
+kawasaki:{
+  name:'Kawasaki',types:['bebek','sport'],
+  models:{
+    bebek:[
+      {id:'kawasaki-kaze',name:'Kaze ZX130',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},
+          {name:'Busi',km:10000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:540},
+          {name:'Filter Oli',km:9000,day:270}
+        ]}
+    ],
+    sport:[
+      {id:'kawasaki-ninja250',name:'Ninja 250',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:12000,day:365},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:15000,day:1095},{name:'Ban Belakang',km:12000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:6000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:12000,day:365}
+        ]},
+      {id:'kawasaki-ninja150',name:'Ninja 150 RR',
+        parts:[
+          {name:'Oli Mesin',km:2000,day:60},{name:'Oli Samping',km:0,day:0},
+          {name:'Busi',km:8000,day:240},{name:'Filter Udara',km:8000,day:240},
+          {name:'Rantai + Gir',km:15000,day:365},{name:'Kampas Depan',km:12000,day:270},
+          {name:'Kampas Belakang',km:18000,day:365},{name:'Ban Depan',km:20000,day:1095},
+          {name:'Ban Belakang',km:15000,day:1095},{name:'Aki',km:0,day:365},
+          {name:'Minyak Rem',km:0,day:365}
+        ]},
+      {id:'kawasaki-w175',name:'W175',
+        parts:[
+          {name:'Oli Mesin',km:6000,day:180},
+          {name:'Busi',km:12000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:25000,day:1095},
+          {name:'Ban Belakang',km:20000,day:1095},{name:'Aki',km:0,day:730},
+          {name:'Filter Oli',km:12000,day:365}
+        ]},
+      {id:'kawasaki-klx150',name:'KLX 150',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:8000,day:240},
+          {name:'Filter Udara',km:6000,day:120},{name:'Rantai + Gir',km:15000,day:365},
+          {name:'Kampas Depan',km:10000,day:180},{name:'Kampas Belakang',km:12000,day:300},
+          {name:'Ban Depan',km:12000,day:730},{name:'Ban Belakang',km:10000,day:730},
+          {name:'Aki',km:0,day:540},{name:'Filter Oli',km:10000,day:270},
+          {name:'Minyak Rem',km:0,day:365}
+        ]},
+      {id:'kawasaki-z25',name:'Z250 / Z25',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},{name:'Busi',km:12000,day:365},
+          {name:'Filter Udara',km:12000,day:365},{name:'Rantai + Gir',km:20000,day:730},
+          {name:'Kampas Depan',km:12000,day:270},{name:'Kampas Belakang',km:18000,day:365},
+          {name:'Ban Depan',km:15000,day:1095},{name:'Ban Belakang',km:12000,day:1095},
+          {name:'Aki',km:0,day:730},{name:'Filter Oli',km:6000,day:180},
+          {name:'Minyak Rem',km:0,day:730},{name:'Air Radiator',km:12000,day:365}
+        ]},
+      {id:'kawasaki-eliminator',name:'Eliminator 150',
+        parts:[
+          {name:'Oli Mesin',km:3000,day:90},
+          {name:'Busi',km:10000,day:365},{name:'Filter Udara',km:12000,day:365},
+          {name:'Rantai + Gir',km:20000,day:730},{name:'Kampas Depan',km:15000,day:365},
+          {name:'Kampas Belakang',km:20000,day:365},{name:'Ban Depan',km:20000,day:1095},
+          {name:'Ban Belakang',km:15000,day:1095},{name:'Aki',km:0,day:540},
+          {name:'Filter Oli',km:9000,day:270}
+        ]}
+    ]
+  }
+}};// ===== STATE =====
+let state={bikes:[],theme:'light',view:'list'},activeBikeIdx=0,editingId=null,rt='km',deferredPrompt=null,calMonth=-1,calYear=-1;
+
+function init(){loadState();populateBrands();applyTheme();if(!localStorage.getItem(PIN_KEY))localStorage.setItem(PIN_KEY,'1234');document.getElementById('loginScreen').style.display='';document.getElementById('app').style.display='none';document.getElementById('appHeader').style.display='none';document.getElementById('pin1').focus();setupPWA();}
+function pi(n){const e=document.getElementById('pin'+n);if(e.value&&n<4)document.getElementById('pin'+(n+1)).focus();if(e.value&&n===4)checkPin();}
+function pk(n,e){if(e.key==='Backspace'&&!document.getElementById('pin'+n).value&&n>1)document.getElementById('pin'+(n-1)).focus();}
+function checkPin(){const p=[1,2,3,4].map(i=>document.getElementById('pin'+i).value).join('');if(p.length<4)return;if(p===localStorage.getItem(PIN_KEY)){document.getElementById('loginError').style.display='none';document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='';document.getElementById('appHeader').style.display='';renderAll();}else{document.getElementById('loginError').style.display='';[1,2,3,4].forEach(i=>{const el=document.getElementById('pin'+i);el.value='';el.style.borderColor='var(--overdue)';setTimeout(()=>el.style.borderColor='',500);});document.getElementById('pin1').focus();}}
+function loadState(){try{const r=localStorage.getItem(STORAGE);if(r)state=JSON.parse(r);if(!state.bikes)state.bikes=[];if(!state.theme)state.theme='light';if(!state.view)state.view='list';}catch(e){state={bikes:[],theme:'light',view:'list'};}}
+function saveState(){localStorage.setItem(STORAGE,JSON.stringify(state));}
+function getColor(i){return['var(--c1)','var(--c2)','var(--c3)'][i%3];}
+
+// ===== DROPDOWN =====
+function toggleDrop(){document.getElementById('bikeDropMenu').classList.toggle('open');}
+function closeDrop(){document.getElementById('bikeDropMenu').classList.remove('open');}
+function updateDrop(ab){const l=document.getElementById('dropLabel'),b=document.getElementById('dropBullet'),m=document.getElementById('bikeDropMenu');if(!state.bikes.length){l.textContent='Belum ada motor';b.style.background='var(--text-muted)';m.innerHTML='<div class="bike-drop-item bike-drop-item-add" onclick="openAddBike()">+ Tambah Motor</div>';return;}const bk=ab||state.bikes[activeBikeIdx];l.textContent=bk?bk.nick:'Pilih motor';b.style.background=bk?getColor(activeBikeIdx):'var(--text-muted)';let h='';state.bikes.forEach((x,i)=>{h+=`<div class="bike-drop-item" onclick="switchBike(${i})"><span class="bike-bullet" style="background:${getColor(i)}"></span><span class="bike-drop-nick">${esc(x.nick)}</span>${i===activeBikeIdx?'<svg class="bike-drop-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>':''}</div>`;});if(state.bikes.length<3)h+=`<div class="bike-drop-item bike-drop-item-add" onclick="openAddBike()">+ Tambah Motor</div>`;m.innerHTML=h;}
+function switchBike(i){activeBikeIdx=i;closeDrop();renderAll();}
+
+// ===== BRAND =====
+function populateBrands(){const s=document.getElementById('bBrand');s.innerHTML='<option value="">Pilih merk</option>';Object.keys(BIKE_DATA).forEach(k=>{s.innerHTML+=`<option value="${k}">${BIKE_DATA[k].name}</option>`;});}
+function bOnBrandChange(){const b=document.getElementById('bBrand').value,t=document.getElementById('bType'),m=document.getElementById('bModel');t.innerHTML='<option value="">Pilih tipe</option>';m.innerHTML='<option value="">Pilih model</option>';m.disabled=true;if(!b){t.disabled=true;return;}t.disabled=false;BIKE_DATA[b].types.forEach(x=>{t.innerHTML+=`<option value="${x}">${x[0].toUpperCase()+x.slice(1)}</option>`;});}
+function bOnTypeChange(){const b=document.getElementById('bBrand').value,t=document.getElementById('bType').value,m=document.getElementById('bModel');m.innerHTML='<option value="">Pilih model</option>';if(!b||!t){m.disabled=true;return;}m.disabled=false;(BIKE_DATA[b].models[t]||[]).forEach(x=>{m.innerHTML+=`<option value="${x.id}">${x.name}</option>`;});}
+
+// ===== VIEW =====
+let cv='list';
+function setView(v){cv=v;document.getElementById('viewListBtn').classList.toggle('active',v==='list');document.getElementById('viewCalBtn').classList.toggle('active',v==='cal');document.getElementById('bikeView').style.display=v==='list'?'':'none';document.getElementById('calendarView').style.display=v==='cal'?'':'none';document.getElementById('partListContainer').style.display=v==='list'?'':'none';if(v==='cal')renderCalendar();if(v==='list')renderAll();}
+
+// ===== RENDER (REDESIGNED) =====
+function renderAll(){closeDrop();const ve=document.getElementById('bikeView'),pc=document.getElementById('partListContainer');if(!state.bikes.length){ve.innerHTML='<div class="empty-bikes"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M3 18h1.5M19.5 18H21M9 18h6"/><path d="M12 4v8m0 0-3-3m3 3 3-3"/><path d="M3 10c0-2 1.5-4 4-4h10c2.5 0 4 2 4 4"/></svg><h3>Belum ada motor</h3><p>Tambahkan motor pertama kamu untuk mulai tracking sparepart.</p><button class="btn btn-prime" onclick="openAddBike()">Tambah Motor</button></div>';pc.style.display='none';updateDrop();return;}
+if(activeBikeIdx>=state.bikes.length)activeBikeIdx=0;const bike=state.bikes[activeBikeIdx];if(!bike){pc.style.display='none';updateDrop();return;}updateDrop(bike);
+ve.innerHTML=`<div class="bike-card" onclick="openEditBike('${bike.id}')"><div class="bike-card-header"><div class="bike-card-info"><div class="bike-card-name">${esc(bike.nick)}</div><div class="bike-card-model">${esc(bike.modelName||'Custom')}</div></div><svg class="bike-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><div class="bike-card-body"><div class="bike-odo-section"><div><div class="bike-odo-label">Odometer</div><div class="bike-odo-value ${bike.odoBroken?'bike-odo-warn':''}">${bike.odo?bike.odo.toLocaleString()+' km':'0 km'}${bike.odoBroken?' ~':''}</div></div><div class="bike-odo-actions"><input class="bike-odo-input" type="number" id="odoInput" placeholder="KM baru" onkeydown="if(event.key==='Enter')updateOdo()"><button class="btn btn-prime btn-sm" onclick="event.stopPropagation();updateOdo()">Simpan</button><button class="btn-icon" onclick="event.stopPropagation();resetOdo()" title="Reset odometer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></button></div><label class="bike-odo-toggle" onclick="event.stopPropagation()"><input type="checkbox" ${bike.odoBroken?'checked':''} onchange="toggleOdoBroken(this.checked)"><span class="bike-odo-toggle-track"></span><span class="bike-odo-toggle-label">Odo mati</span></label></div><div class="stats-row"><div class="stat-card"><div class="stat-card-top"><span class="stat-card-dot ok"></span><span class="stat-val ok" id="statOk">0</span></div><span class="stat-lbl">Aman</span></div><div class="stat-card"><div class="stat-card-top"><span class="stat-card-dot due"></span><span class="stat-val due" id="statDue">0</span></div><span class="stat-lbl">Segera</span></div><div class="stat-card"><div class="stat-card-top"><span class="stat-card-dot odue"></span><span class="stat-val odue" id="statOverdue">0</span></div><span class="stat-lbl">Overdue</span></div></div></div></div>`;
+pc.style.display='';renderParts(bike);}
+
+function renderParts(bike){const p=bike.parts||[];document.getElementById('partCount').textContent=p.length;const l=document.getElementById('partList'),e=document.getElementById('emptyState');if(!p.length){l.innerHTML='';e.style.display='block';updateStats(bike);return;}e.style.display='none';const s=[...p].sort((a,b)=>{const sa=getStatus(a,bike.odo||0),sb=getStatus(b,bike.odo||0);const wa=sa.status==='overdue'?2:sa.status==='due'?1:0,wb=sb.status==='overdue'?2:sb.status==='due'?1:0;return wb!==wa?wb-wa:a.name.localeCompare(b.name);});
+l.innerHTML=s.map(p=>{const st=getStatus(p,bike.odo||0);const bg=st.status==='ok'?'ok':st.status==='due'?'due':'odue';const pct=Math.min(Math.round(st.progress*100),100);return `<div class="sp-item" onclick="openEditPart('${p.id}')"><div class="sp-top"><div class="sp-left"><div class="sp-name"><span class="sp-name-text">${esc(p.name)}</span>${p.custom?'<span class="sp-custom-tag">custom</span>':''}<span class="sp-status-badge ${bg}">${st.label}</span></div><div class="sp-meta"><span class="sp-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${p.kmInterval?p.kmInterval.toLocaleString()+' km':'-'}${p.dayInterval?' / '+p.dayInterval+' hari':''}</span><span class="sp-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${p.lastKm?p.lastKm.toLocaleString()+' km':'-'}${p.lastDate?' / '+p.lastDate:''}</span></div></div><div class="sp-actions"><button class="sp-action-btn" onclick="event.stopPropagation();addToCalendar('${p.id}')" title="Google Calendar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></button></div></div><div class="sp-progress-wrap"><div class="sp-progress-track"><div class="sp-progress-fill ${bg}" style="width:${pct}%"></div></div><span class="sp-progress-pct">${pct}%</span></div></div>`;}).join('');updateStats(bike);}
+
+function getStatus(p,o){if(!p.kmInterval&&!p.dayInterval)return{status:'ok',label:'OK',cls:'progress-ok',progress:0};let k=0,d=0;if(p.kmInterval>0&&o>0)k=Math.max(0,o-(p.lastKm||0))/p.kmInterval;if(p.dayInterval>0&&p.lastDate)d=Math.floor((Date.now()-new Date(p.lastDate).getTime())/86400000)/p.dayInterval;const m=Math.max(k,d);if(m>=1)return{status:'overdue',label:'Overdue',cls:'progress-odue',progress:Math.min(m,1)};if(m>=0.8)return{status:'due',label:'Segera',cls:'progress-due',progress:m};return{status:'ok',label:'Aman',cls:'progress-ok',progress:m};}
+function updateStats(b){let ok=0,due=0,odue=0;(b.parts||[]).forEach(p=>{const s=getStatus(p,b.odo||0);if(s.status==='ok')ok++;else if(s.status==='due')due++;else odue++;});document.getElementById('statOk').textContent=ok;document.getElementById('statDue').textContent=due;document.getElementById('statOverdue').textContent=odue;}
+
+// ===== ODOMETER =====
+function getActiveBike(){return state.bikes[activeBikeIdx];}
+function updateOdo(){const b=getActiveBike();if(!b)return;const v=parseInt(document.getElementById('odoInput').value);if(isNaN(v)||v<0){toast('Masukkan angka KM');return;}if(!b.odoBroken&&b.odo>0&&v<b.odo){toast('KM harus lebih besar dari '+b.odo.toLocaleString());return;}b.odo=v;saveState();renderAll();document.getElementById('odoInput').value='';toast('Odometer: '+v.toLocaleString()+' km');}
+function toggleOdoBroken(v){const b=getActiveBike();if(!b)return;b.odoBroken=v;saveState();renderAll();}
+function resetOdo(){const b=getActiveBike();if(!b||!confirm('Reset odometer ke 0? Data sparepart tetap aman.'))return;b.odo=0;saveState();renderAll();toast('Odometer direset');}
+
+// ===== BIKE CRUD =====
+function openAddBike(){document.getElementById('bEditId').value='';document.getElementById('bikeModalTitle').textContent='Tambah Motor';document.getElementById('bSubmit').textContent='Simpan';document.getElementById('bDelBtn').style.display='none';document.getElementById('bikeForm').reset();document.getElementById('bNick').value='Motor '+(state.bikes.length+1);document.getElementById('bBrand').value='';document.getElementById('bType').innerHTML='<option value="">Pilih tipe</option>';document.getElementById('bModel').innerHTML='<option value="">Pilih model</option>';document.getElementById('bType').disabled=true;document.getElementById('bModel').disabled=true;document.getElementById('bikeModal').classList.add('open');closeDrop();setTimeout(()=>document.getElementById('bNick').focus(),200);}
+function openEditBike(id){const b=state.bikes.find(x=>x.id===id);if(!b)return;document.getElementById('bEditId').value=id;document.getElementById('bikeModalTitle').textContent='Edit '+b.nick;document.getElementById('bSubmit').textContent='Simpan';document.getElementById('bDelBtn').style.display='';document.getElementById('bNick').value=b.nick;if(b.brandId&&b.typeId&&b.modelId){document.getElementById('bBrand').value=b.brandId;bOnBrandChange();setTimeout(()=>{document.getElementById('bType').value=b.typeId;bOnTypeChange();setTimeout(()=>{document.getElementById('bModel').value=b.modelId;},50);},50);}else{document.getElementById('bBrand').value='';document.getElementById('bType').innerHTML='<option value="">Pilih tipe</option>';document.getElementById('bModel').innerHTML='<option value="">Pilih model</option>';document.getElementById('bType').disabled=true;document.getElementById('bModel').disabled=true;}document.getElementById('bikeModal').classList.add('open');}
+function closeBikeModal(){document.getElementById('bikeModal').classList.remove('open');}
+function saveBike(e){e.preventDefault();const n=document.getElementById('bNick').value.trim(),b=document.getElementById('bBrand').value,t=document.getElementById('bType').value,mi=document.getElementById('bModel').value,ei=document.getElementById('bEditId').value;if(!n){toast('Nama motor harus diisi');return;}let mn='',md=null;if(b&&t&&mi){md=BIKE_DATA[b].models[t].find(x=>x.id===mi);if(md)mn=md.name;}
+if(ei){const i=state.bikes.findIndex(x=>x.id===ei);if(i!==-1){state.bikes[i].nick=n;state.bikes[i].brandId=b;state.bikes[i].typeId=t;state.bikes[i].modelId=mi;state.bikes[i].modelName=mn;if(md&&md.parts){const ex=state.bikes[i].parts||[];state.bikes[i].parts=md.parts.map(p=>{const f=ex.find(e=>e.name===p.name&&!e.custom);return f?f:{id:genId(),name:p.name,kmInterval:p.km,dayInterval:p.day,lastKm:0,lastDate:'',notes:'',reminderType:'km',custom:false,createdAt:Date.now()};}).concat(ex.filter(e=>e.custom));}}toast('Motor diupdate');}else{const parts=md?md.parts.map(p=>({id:genId(),name:p.name,kmInterval:p.km,dayInterval:p.day,lastKm:0,lastDate:'',notes:'',reminderType:'km',custom:false,createdAt:Date.now()})):[];state.bikes.push({id:genId(),nick:n,brandId:b,typeId:t,modelId:mi,modelName:mn,odo:0,odoBroken:false,parts});toast('Motor ditambahkan');activeBikeIdx=state.bikes.length-1;}saveState();renderAll();closeBikeModal();}
+function deleteBike(){const id=document.getElementById('bEditId').value;if(!confirm('Hapus motor ini? Semua data sparepartnya ikut terhapus.'))return;state.bikes=state.bikes.filter(b=>b.id!==id);if(activeBikeIdx>=state.bikes.length)activeBikeIdx=Math.max(0,state.bikes.length-1);saveState();renderAll();closeBikeModal();toast('Motor dihapus');}
+
+// ===== SPAREPART CRUD =====
+function openAddPart(){const b=getActiveBike();editingId=null;document.getElementById('modalTitle').textContent='Tambah Sparepart';document.getElementById('btnSubmit').textContent='Simpan';document.getElementById('btnDelete').style.display='none';document.getElementById('btnResetPart').style.display='none';document.getElementById('partForm').reset();document.getElementById('fEditId').value='';document.getElementById('fLastDate').value=todayStr();rt='km';document.querySelectorAll('.rt-btn').forEach(b=>b.classList.toggle('active',b.dataset.v==='km'));setupEstimate(b);document.getElementById('modalOverlay').classList.add('open');}
+function openEditPart(id){const b=getActiveBike();if(!b)return;const p=b.parts.find(x=>x.id===id);if(!p)return;editingId=id;document.getElementById('modalTitle').textContent='Edit '+p.name;document.getElementById('btnSubmit').textContent='Simpan';document.getElementById('btnDelete').style.display='';document.getElementById('btnResetPart').style.display='';document.getElementById('fEditId').value=id;document.getElementById('fName').value=p.name;document.getElementById('fKm').value=p.kmInterval||'';document.getElementById('fDay').value=p.dayInterval||'';document.getElementById('fLastKm').value=p.lastKm||'';document.getElementById('fLastDate').value=p.lastDate||'';document.getElementById('fNotes').value=p.notes||'';rt=p.reminderType||'km';document.querySelectorAll('.rt-btn').forEach(b=>b.classList.toggle('active',b.dataset.v===rt));setupEstimate(b);document.getElementById('modalOverlay').classList.add('open');}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');editingId=null;}
+function savePart(e){e.preventDefault();const b=getActiveBike();if(!b)return;const n=document.getElementById('fName').value.trim(),km=parseInt(document.getElementById('fKm').value)||0,dy=parseInt(document.getElementById('fDay').value)||0,lk=parseInt(document.getElementById('fLastKm').value)||0,ld=document.getElementById('fLastDate').value,nt=document.getElementById('fNotes').value.trim(),ei=document.getElementById('fEditId').value;if(!n){toast('Nama harus diisi');return;}
+if(ei){const i=b.parts.findIndex(x=>x.id===ei);if(i!==-1)b.parts[i]={...b.parts[i],name:n,kmInterval:km,dayInterval:dy,lastKm:lk,lastDate:ld,notes:nt,reminderType:rt};toast('Disimpan');}else{b.parts.push({id:genId(),name:n,kmInterval:km,dayInterval:dy,lastKm:lk,lastDate:ld,notes:nt,reminderType:rt,custom:true,createdAt:Date.now()});toast('Ditambahkan');}
+saveState();renderAll();closeModal();}
+function deletePart(id){const b=getActiveBike();if(!b||!confirm('Hapus sparepart ini?'))return;b.parts=b.parts.filter(p=>p.id!==id);saveState();renderAll();closeModal();toast('Dihapus');}
+function deleteFromModal(){const id=document.getElementById('fEditId').value;if(id)deletePart(id);}
+function resetPartOdo(id){const b=getActiveBike();if(!b)return;const p=b.parts.find(x=>x.id===id);if(!p)return;if(!confirm('Reset "'+p.name+'" ke kondisi awal?'))return;p.lastKm=0;p.lastDate='';saveState();renderAll();closeModal();toast('"'+p.name+'" direset');}
+function resetPartFromModal(){const id=document.getElementById('fEditId').value;if(id)resetPartOdo(id);}
+
+// ===== ESTIMATE =====
+function setupEstimate(b){const e=document.getElementById('estBox');if(!b||!b.odo){e.style.display='none';return;}e.style.display='block';document.getElementById('estOdoVal').textContent=b.odo.toLocaleString();document.getElementById('estSlider').value=50;updateEstimateLabel(b);}
+function updateEstimateLabel(b){if(!b)b=getActiveBike();const p=parseInt(document.getElementById('estSlider').value);document.getElementById('estLabelB').textContent=p+'%';const e=Math.round((b.odo||0)*(1-p/100));document.getElementById('estKmResult').textContent=e.toLocaleString()+' km';document.getElementById('estLabelA').textContent=e.toLocaleString()+' km';}
+function applyEstimate(){const b=getActiveBike();const p=parseInt(document.getElementById('estSlider').value);document.getElementById('fLastKm').value=Math.round((b.odo||0)*(1-p/100));toast('KM terakhir diisi');}
+
+// ===== CALENDAR (REDESIGNED) =====
+function getUrgencyClass(dueDate){
+  const today=new Date();today.setHours(0,0,0,0);
+  const due=new Date(dueDate);due.setHours(0,0,0,0);
+  const diffDays=Math.ceil((due-today)/(1000*60*60*24));
+  if(diffDays<0)return'event-odue'; // overdue
+  if(diffDays<=7)return'event-due';  // due within a week
+  return'event-ok'; // ok
+}
+
+function renderCalendar(){
+  const el=document.getElementById('calendarView');
+  if(!state.bikes.length){
+    el.innerHTML='<div class="cal-empty"><h3>Belum ada motor</h3><p>Tambah motor dulu untuk lihat kalender sparepart.</p></div>';
+    return;
+  }
+  const n=new Date();
+  if(calMonth===-1){calMonth=n.getMonth();calYear=n.getFullYear();}
+  const fd=new Date(calYear,calMonth,1),ld=new Date(calYear,calMonth+1,0);
+  const sp=fd.getDay(),td=ld.getDate();
+  const mn=fd.toLocaleDateString('id-ID',{month:'long'}),yr=calYear;
+  
+  // Collect all events for this month AND next month for summary
+  const evThisMonth=[];
+  const evNextMonth=[];
+  const nextMonth=new Date(calYear,calMonth+1,1);
+  const nextMonthEnd=new Date(calYear,calMonth+2,0);
+  
+  state.bikes.forEach((bk,bi)=>{
+    if(!bk.parts)return;
+    bk.parts.forEach(p=>{
+      if(!p.dayInterval||!p.lastDate)return;
+      const d=new Date(new Date(p.lastDate));
+      d.setDate(d.getDate()+p.dayInterval);
+      const eventData={day:d.getDate(),month:d.getMonth(),year:d.getFullYear(),bi,part:p.name,bike:bk.nick,color:getColor(bi),dueDate:d.toISOString().split('T')[0]};
+      
+      if(d.getFullYear()===calYear&&d.getMonth()===calMonth){
+        evThisMonth.push({...eventData, urgency:getUrgencyClass(d)});
+      }
+      if(d.getFullYear()===nextMonth.getFullYear()&&d.getMonth()===nextMonth.getMonth()){
+        evNextMonth.push({...eventData, urgency:getUrgencyClass(d)});
+      }
+    });
+  });
+  
+  const wd=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+  let h=`<div class="cal-wrap"><div class="cal-head"><div class="cal-head-left"><h2>${mn}</h2><span class="cal-year">${yr}</span></div><div class="cal-nav"><button class="cal-nav-btn" onclick="calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCalendar()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><button class="cal-nav-today" onclick="const n=new Date();calMonth=n.getMonth();calYear=n.getFullYear();renderCalendar()">Hari ini</button><button class="cal-nav-btn" onclick="calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCalendar()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div><div class="cal-grid">`;
+  
+  wd.forEach(d=>{h+=`<div class="cal-dow">${d}</div>`;});
+  for(let i=0;i<sp;i++)h+=`<div class="cal-day other"></div>`;
+  
+  for(let d=1;d<=td;d++){
+    const t=d===n.getDate()&&calMonth===n.getMonth()&&calYear===n.getFullYear();
+    const de=evThisMonth.filter(e=>e.day===d);
+    let dayClass=`cal-day${t?' today':''}`;
+    let urgencyClass='';
+    if(de.length){
+      dayClass+=' has-event';
+      // Use highest urgency among events on this day
+      const urgencies=de.map(e=>e.urgency);
+      if(urgencies.includes('event-odue'))urgencyClass='event-odue';
+      else if(urgencies.includes('event-due'))urgencyClass='event-due';
+      else urgencyClass='event-ok';
+      dayClass+=' '+urgencyClass;
+    }
+    
+    h+=`<div class="${dayClass}" ${de.length?`onclick="showDayDetail(${d})"`:''}><span>${d}</span>`;
+    if(de.length){
+      h+=`<div class="cal-day-event-bar">`;
+      const shown=de.slice(0,3);
+      shown.forEach(e=>{h+=`<span class="cal-day-event-dot" style="background:${e.color}"></span>`;});
+      h+=`</div>`;
+    }
+    h+=`</div>`;
+  }
+  
+  h+=`</div><div class="cal-footer">`;
+  if(state.bikes.length>1){
+    h+=`<div class="cal-legend">`;
+    state.bikes.forEach((b,i)=>{h+=`<span class="cal-legend-item"><span class="cal-legend-dot" style="background:${getColor(i)}"></span>${esc(b.nick)}</span>`;});
+    h+=`</div>`;
+  }
+  h+=`<span style="font-size:10px;color:var(--text-muted);margin-left:auto">Klik tanggal untuk detail</span></div>`;
+  
+  // Add summary sections
+  h+=`<div class="cal-summary">`;
+  
+  // This month summary
+  h+=`<div class="cal-summary-section">
+    <div class="cal-summary-title">
+      <span class="dot" style="background:var(--ok)"></span>
+      Bulan ini (${mn} ${yr})
+    </div>
+    <div class="cal-summary-list">`;
+  
+  if(evThisMonth.length===0){
+    h+=`<div class="cal-summary-empty">Tidak ada jadwal ganti sparepart bulan ini.</div>`;
+  }else{
+    // Group by date
+    const grouped={};
+    evThisMonth.forEach(e=>{
+      if(!grouped[e.day])grouped[e.day]=[];
+      grouped[e.day].push(e);
+    });
+    Object.keys(grouped).sort((a,b)=>parseInt(a)-parseInt(b)).forEach(day=>{
+      grouped[day].forEach(e=>{
+        h+=`<div class="cal-summary-item">
+          <span class="cal-summary-bullet" style="background:${e.color}"></span>
+          <span class="cal-summary-part">${esc(e.part)}</span>
+          <span class="cal-summary-bike">${esc(e.bike)}</span>
+          <span class="cal-summary-date">${day} ${mn.slice(0,3)}</span>
+        </div>`;
+      });
+    });
+  }
+  
+  h+=`</div></div>`;
+  
+  // Next month summary
+  const nextMn=nextMonth.toLocaleDateString('id-ID',{month:'long'});
+  const nextYr=nextMonth.getFullYear();
+  h+=`<div class="cal-summary-section">
+    <div class="cal-summary-title">
+      <span class="dot" style="background:var(--due)"></span>
+      Bulan depan (${nextMn} ${nextYr})
+    </div>
+    <div class="cal-summary-list">`;
+  
+  if(evNextMonth.length===0){
+    h+=`<div class="cal-summary-empty">Tidak ada jadwal ganti sparepart bulan depan.</div>`;
+  }else{
+    const grouped={};
+    evNextMonth.forEach(e=>{
+      if(!grouped[e.day])grouped[e.day]=[];
+      grouped[e.day].push(e);
+    });
+    Object.keys(grouped).sort((a,b)=>parseInt(a)-parseInt(b)).forEach(day=>{
+      grouped[day].forEach(e=>{
+        h+=`<div class="cal-summary-item">
+          <span class="cal-summary-bullet" style="background:${e.color}"></span>
+          <span class="cal-summary-part">${esc(e.part)}</span>
+          <span class="cal-summary-bike">${esc(e.bike)}</span>
+          <span class="cal-summary-date">${day} ${nextMn.slice(0,3)}</span>
+        </div>`;
+      });
+    });
+  }
+  
+  h+=`</div></div>`;
+  h+=`</div>`;
+  
+  el.innerHTML=h;
+}
+function showDayDetail(dy){const mn=new Date(calYear,calMonth).toLocaleDateString('id-ID',{month:'long',year:'numeric'});document.getElementById('calPopupTitle').textContent=dy+' '+mn;const de=[];state.bikes.forEach((bk,bi)=>{if(!bk.parts)return;bk.parts.forEach(p=>{if(!p.dayInterval||!p.lastDate)return;const d=new Date(new Date(p.lastDate));d.setDate(d.getDate()+p.dayInterval);if(d.getDate()===dy&&d.getMonth()===calMonth&&d.getFullYear()===calYear)de.push({nick:bk.nick,part:p.name,color:getColor(bi)});});});document.getElementById('calPopupList').innerHTML=de.map(e=>`<div class="cal-popup-item"><span class="cal-popup-bullet" style="background:${e.color}"></span><div class="cal-popup-item-text"><div class="cal-popup-item-name">${esc(e.part)}</div><div class="cal-popup-item-bike">${esc(e.nick)}</div></div></div>`).join('')||'<div style="text-align:center;padding:16px;color:var(--text-muted)">Tidak ada sparepart yang perlu diganti hari ini.</div>';document.getElementById('calPopup').classList.add('open');}
+function closeCalPopup(){document.getElementById('calPopup').classList.remove('open');}
+function addToCalendar(id){const b=getActiveBike();if(!b)return;const p=b.parts.find(x=>x.id===id);if(!p)return;const t=encodeURIComponent('Ganti '+p.name+' - Motopart');const dt=encodeURIComponent('Jadwal ganti '+p.name+'\nMotor: '+b.nick+(p.notes?'\nCatatan: '+p.notes:''));let sd=new Date();if(p.dayInterval>0&&p.lastDate){const l=new Date(p.lastDate);sd=new Date(l);sd.setDate(sd.getDate()+p.dayInterval);}const ed=new Date(sd);ed.setDate(ed.getDate()+1);const f=d=>d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+t+'&dates='+f(sd)+'%2F'+f(ed)+'&details='+dt,'_blank');}
+
+// ===== REMINDER =====
+function setRT(t){rt=t;document.querySelectorAll('.rt-btn').forEach(b=>b.classList.toggle('active',b.dataset.v===t));}
+
+// ===== SETTINGS =====
+function openSettings(){document.getElementById('settingsModal').classList.add('open');document.getElementById('sOldPin').value='';['sNewPin1','sNewPin2','sNewPin3','sNewPin4'].forEach(id=>document.getElementById(id).value='');document.getElementById('sSettingsError').style.display='none';document.getElementById('sSettingsSuccess').style.display='none';}
+function closeSettings(){document.getElementById('settingsModal').classList.remove('open');}
+function changePin(){const o=document.getElementById('sOldPin').value,n=[1,2,3,4].map(i=>document.getElementById('sNewPin'+i).value).join(''),s=localStorage.getItem(PIN_KEY);if(!o||o!==s){document.getElementById('sSettingsError').textContent='PIN lama salah';document.getElementById('sSettingsError').style.display='';document.getElementById('sSettingsSuccess').style.display='none';return;}if(n.length!==4){document.getElementById('sSettingsError').textContent='PIN baru harus 4 digit';document.getElementById('sSettingsError').style.display='';document.getElementById('sSettingsSuccess').style.display='none';return;}localStorage.setItem(PIN_KEY,n);document.getElementById('sSettingsError').style.display='none';document.getElementById('sSettingsSuccess').style.display='';document.getElementById('sOldPin').value='';[1,2,3,4].forEach(i=>document.getElementById('sNewPin'+i).value='');}
+
+// ===== THEME =====
+function toggleTheme(){state.theme=state.theme==='dark'?'light':'dark';saveState();applyTheme();}
+function applyTheme(){const d=state.theme==='dark';document.documentElement.classList.toggle('dark',d);const s=document.getElementById('sunIcon'),m=document.getElementById('moonIcon');if(s){s.style.display=d?'block':'none';m.style.display=d?'none':'block';}}
+
+// ===== HELPERS =====
+function genId(){return crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function setToday(){document.getElementById('fLastDate').value=todayStr();}
+function toast(m){const c=document.getElementById('toastContainer'),el=document.createElement('div');el.className='toast';el.textContent=m;c.appendChild(el);setTimeout(()=>{el.remove();},2000);}
+function hidePwaBanner(){document.getElementById('pwaBanner').classList.remove('show');}
+function setupPWA(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('pwaBanner').classList.add('show');});document.getElementById('installBtn').addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();const r=await deferredPrompt.userChoice;if(r.outcome==='accepted')toast('Motopart terinstall!');document.getElementById('pwaBanner').classList.remove('show');deferredPrompt=null;});window.addEventListener('appinstalled',()=>{toast('Motopart terpasang!');document.getElementById('pwaBanner').classList.remove('show');});}
+
+// ===== EVENTS =====
+document.getElementById('estSlider').addEventListener('input',function(){updateEstimateLabel(getActiveBike());});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBikeModal();closeSettings();closeCalPopup();}});
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.getElementById('bikeModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeBikeModal();});
+document.getElementById('settingsModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSettings();});
+document.querySelectorAll('#pin1,#pin2,#pin3,#pin4').forEach(el=>{el.addEventListener('input',checkPin);});
+document.addEventListener('click',e=>{const m=document.getElementById('bikeDropMenu');if(m.classList.contains('open')&&!e.target.closest('.bike-drop-wrap'))m.classList.remove('open');});
+document.addEventListener('DOMContentLoaded',init);
+if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js?v2').catch(()=>{});}
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Motopart",
+  "short_name": "Motopart",
+  "description": "Tracker sparepart motor — catat jadwal ganti sparepart.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "scope": "/",
+  "categories": ["lifestyle", "utilities", "automotive"],
+  "lang": "id-ID",
+  "icons": [
+    { "src": "icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "maskable" },
+    { "src": "icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Tambah Sparepart", "short_name": "Tambah", "description": "Tambah sparepart baru", "url": "/?action=add" }
+  ]
+}

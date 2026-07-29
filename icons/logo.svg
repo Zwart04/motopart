@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <style>
+      .gear { fill: #09090b; }
+      .clock-face { fill: #ffffff; }
+      .clock-ring { fill: none; stroke: #09090b; stroke-width: 2; }
+      .clock-tick { fill: none; stroke: #09090b; stroke-width: 2; stroke-linecap: round; }
+      .clock-hand { fill: #09090b; }
+      .clock-hub { fill: #09090b; }
+      .arrow { fill: none; stroke: #09090b; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  
+  <!-- Outer Gear (10 teeth) -->
+  <g class="gear">
+    <!-- Main gear body -->
+    <circle cx="128" cy="128" r="88"/>
+    <!-- 10 gear teeth -->
+    <path d="
+      M 128 32 L 138 48 L 118 48 Z
+      M 180 48 L 196 58 L 176 58 Z
+      M 220 96 L 236 106 L 236 86 Z
+      M 236 150 L 252 160 L 252 140 Z
+      M 220 204 L 236 214 L 236 194 Z
+      M 180 252 L 196 262 L 176 262 Z
+      M 128 256 L 138 272 L 118 272 Z
+      M 76 252 L 60 262 L 80 262 Z
+      M 36 204 L 20 214 L 20 194 Z
+      M 20 150 L 4 160 L 4 140 Z
+      M 36 96 L 20 106 L 20 86 Z
+      M 76 48 L 60 58 L 80 58 Z
+    "/>
+  </g>
+  
+  <!-- Inner clock face area -->
+  <circle class="clock-face" cx="128" cy="128" r="78"/>
+  
+  <!-- Inner clock rings -->
+  <circle class="clock-ring" cx="128" cy="128" r="76"/>
+  <circle class="clock-ring" cx="128" cy="128" r="72"/>
+  
+  <!-- Hour markers (8 main markers) -->
+  <g class="clock-tick">
+    <!-- 12 o'clock -->
+    <line x1="128" y1="52" x2="128" y2="58"/>
+    <!-- 1:30 -->
+    <line x1="142.5" y1="67.5" x2="147" y2="72"/>
+    <!-- 3 o'clock -->
+    <line x1="198" y1="128" x2="204" y2="128"/>
+    <!-- 4:30 -->
+    <line x1="147" y1="142.5" x2="142.5" y2="147"/>
+    <!-- 6 o'clock -->
+    <line x1="128" y1="198" x2="128" y2="204"/>
+    <!-- 7:30 -->
+    <line x1="113.5" y1="147" x2="109" y2="142.5"/>
+    <!-- 9 o'clock -->
+    <line x1="52" y1="128" x2="58" y2="128"/>
+    <!-- 10:30 -->
+    <line x1="109" y1="113.5" x2="113.5" y2="109"/>
+  </g>
+  
+  <!-- Hour hand (pointing at 2 o'clock) -->
+  <g class="clock-hand" transform="rotate(60 128 128)">
+    <path d="M 128 116 L 125 80 L 131 80 Z"/>
+  </g>
+  
+  <!-- Minute hand (pointing at 12 o'clock) -->
+  <g class="clock-hand">
+    <path d="M 128 116 L 126 52 L 130 52 Z"/>
+  </g>
+  
+  <!-- Center hub -->
+  <circle class="clock-hub" cx="128" cy="128" r="6"/>
+  
+  <!-- Rotation arrow (starting near 10 o'clock, going clockwise to 3 o'clock) -->
+  <path class="arrow" d="M 55 100 A 73 73 0 0 1 190 55" 
+        marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#09090b"/>
+    </marker>
+  </defs>
+</svg>

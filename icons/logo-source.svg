@@ -1,0 +1,94 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .gear { fill: currentColor; }
+      .clock-ring { fill: none; stroke: currentColor; stroke-width: 4; }
+      .clock-face { fill: currentColor; }
+      .clock-mark { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
+      .clock-hand { fill: currentColor; }
+      .hand-center { fill: currentColor; }
+      .rotate-arrow { fill: none; stroke: currentColor; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  
+  <!-- Outer Gear/Cogwheel - 10 teeth -->
+  <g class="gear" transform="translate(256, 256)">
+    <!-- Gear body -->
+    <circle r="190" fill="currentColor"/>
+    <circle r="110" fill="transparent"/>
+    <!-- 10 teeth -->
+    <g>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(0)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(36)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(72)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(108)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(144)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(180)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(216)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(252)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(288)" fill="currentColor"/>
+      <path d="M 0 -190 L 15 -190 L 18 -220 L 21 -190 L 36 -190 A 226 226 0 0 1 19 -225 L 23 -255 L 0 -270 L -23 -255 L -19 -225 A 226 226 0 0 1 -36 -190 L -21 -190 L -18 -220 L -15 -190 L 0 -190 Z" 
+            transform="rotate(324)" fill="currentColor"/>
+    </g>
+    <!-- Center hole -->
+    <circle r="80" fill="transparent"/>
+  </g>
+  
+  <!-- Inner Clock Face -->
+  <g transform="translate(256, 256)">
+    <!-- Clock outer ring -->
+    <circle class="clock-ring" r="112" stroke-width="5"/>
+    <circle class="clock-ring" r="102" stroke-width="3"/>
+    
+    <!-- Clock face background -->
+    <circle class="clock-face" r="100"/>
+    
+    <!-- Hour markers - 8 markers (cardinal + ordinal) -->
+    <!-- 12 o'clock -->
+    <line class="clock-mark" x1="0" y1="-90" x2="0" y2="-75"/>
+    <!-- 1:30 -->
+    <line class="clock-mark" x1="53" y1="-53" x2="63" y2="-63" transform="rotate(45)"/>
+    <!-- 3 o'clock -->
+    <line class="clock-mark" x1="90" y1="0" x2="75" y2="0"/>
+    <!-- 4:30 -->
+    <line class="clock-mark" x1="53" y1="53" x2="63" y2="63" transform="rotate(135)"/>
+    <!-- 6 o'clock -->
+    <line class="clock-mark" x1="0" y1="90" x2="0" y2="75"/>
+    <!-- 7:30 -->
+    <line class="clock-mark" x1="-53" y1="53" x2="-63" y2="63" transform="rotate(-45)"/>
+    <!-- 9 o'clock -->
+    <line class="clock-mark" x1="-90" y1="0" x2="-75" y2="0"/>
+    <!-- 10:30 -->
+    <line class="clock-mark" x1="-53" y1="-53" x2="-63" y2="-63" transform="rotate(-135)"/>
+    
+    <!-- Center hub -->
+    <circle class="hand-center" r="6"/>
+    
+    <!-- Hour hand - pointing at 2 o'clock (60 degrees from 12) -->
+    <path class="clock-hand" d="M -3 -50 L 3 -50 L 3 10 L 0 15 L -3 10 Z" transform="rotate(60)"/>
+    
+    <!-- Minute hand - pointing at 12 o'clock (0 degrees) -->
+    <path class="clock-hand" d="M -2 -80 L 2 -80 L 2 10 L 0 15 L -2 10 Z" transform="rotate(0)"/>
+    
+    <!-- Rotation arrow - from 10 o'clock to 3 o'clock clockwise -->
+    <path class="rotate-arrow" d="M -70 -40 A 80 80 0 1 1 56 -56" 
+          marker-end="url(#arrowhead)"/>
+    
+    <!-- Arrowhead marker -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="currentColor"/>
+      </marker>
+    </defs>
+  </g>
+</svg>
