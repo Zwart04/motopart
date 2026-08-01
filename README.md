@@ -23,11 +23,15 @@ Aplikasi PWA untuk tracking sparepart motor, service history, dan pengelolaan da
 | ⚙️ Settings | Ganti PIN default setelah masuk |
 
 ## 🛠️ Cara Pakai
-1. Buka [motopart.zwart.qzz.io](https://motopart.zwart.qzz.io)
+1. Buka [motopart.pages.dev](https://motopart.pages.dev)
 2. Masukkan PIN default: `1234`
 3. Ganti PIN di Pengaturan setelah masuk
 4. Input sparepart dan service history
 5. Semua data tersimpan otomatis
+
+## 👤 Target User
+- Motorcycle riders dan entusiast yang ingin melacak sparepart dan riwayat servis.
+- Siapa pun yang memiliki kendaraan dan butuh catatan maintenance yang terorganisir.
 
 ## 📄 Lisensi
 MIT
