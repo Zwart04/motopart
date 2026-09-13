@@ -1,0 +1,139 @@
+[
+  {
+    "id": "oli-mesin",
+    "name": "Ganti Oli Mesin",
+    "interval_km": 3000,
+    "interval_days": 90,
+    "labor_hours": 0.3,
+    "parts": [
+      "ENG-OIL-10W30",
+      "ENG-OIL-10W40-SYN",
+      "ENG-OIL-20W40"
+    ]
+  },
+  {
+    "id": "filter-udara",
+    "name": "Bersihkan / Ganti Filter Udara",
+    "interval_km": 6000,
+    "interval_days": 180,
+    "labor_hours": 0.3,
+    "parts": [
+      "ENG-FILTER-AIR-BEAT",
+      "ENG-FILTER-AIR-NMAX",
+      "ENG-FILTER-AIR-CBR"
+    ]
+  },
+  {
+    "id": "busi",
+    "name": "Cek / Ganti Busi",
+    "interval_km": 8000,
+    "interval_days": 240,
+    "labor_hours": 0.3,
+    "parts": [
+      "ENG-SPARK-NGK-CPR",
+      "ENG-SPARK-NGK-CR8"
+    ]
+  },
+  {
+    "id": "v-belt",
+    "name": "Cek / Ganti V-Belt",
+    "interval_km": 20000,
+    "interval_days": 730,
+    "labor_hours": 1.5,
+    "parts": [
+      "DRV-BELT-BEAT",
+      "DRV-BELT-NMAX"
+    ]
+  },
+  {
+    "id": "roller",
+    "name": "Cek / Ganti Roller",
+    "interval_km": 15000,
+    "interval_days": 540,
+    "labor_hours": 1.0,
+    "parts": [
+      "DRV-ROLLER-BEAT",
+      "DRV-ROLLER-NMAX"
+    ]
+  },
+  {
+    "id": "kampas-rem",
+    "name": "Cek / Ganti Kampas Rem",
+    "interval_km": 15000,
+    "interval_days": 365,
+    "labor_hours": 0.6,
+    "parts": [
+      "BRK-PAD-FRT-BEAT",
+      "BRK-PAD-FRT-NMAX",
+      "BRK-PAD-FRT-CBR",
+      "BRK-PAD-RR-MATIC"
+    ]
+  },
+  {
+    "id": "minyak-rem",
+    "name": "Ganti Minyak Rem",
+    "interval_km": 20000,
+    "interval_days": 730,
+    "labor_hours": 0.5,
+    "parts": [
+      "CON-CONTACT-CLEAN"
+    ]
+  },
+  {
+    "id": "rantai-sprocket",
+    "name": "Bersihkan & Lumasi Rantai + Sprocket",
+    "interval_km": 5000,
+    "interval_days": 120,
+    "labor_hours": 0.6,
+    "parts": [
+      "CON-GREASE",
+      "DRV-CHAIN-428",
+      "DRV-SPROCKET-FRT-428",
+      "DRV-SPROCKET-RR-428"
+    ]
+  },
+  {
+    "id": "shockbreaker",
+    "name": "Cek Shockbreaker",
+    "interval_km": 25000,
+    "interval_days": 900,
+    "labor_hours": 0.5,
+    "parts": [
+      "SUS-FORK-OIL",
+      "SUS-SHOCK-RR-MATIC",
+      "SUS-SHOCK-RR-NMAX"
+    ]
+  },
+  {
+    "id": "aki",
+    "name": "Cek Aki",
+    "interval_km": 10000,
+    "interval_days": 365,
+    "labor_hours": 0.3,
+    "parts": [
+      "ELE-BATT-YTZ5S",
+      "ELE-BATT-YTZ7S"
+    ]
+  },
+  {
+    "id": "coolant",
+    "name": "Ganti Coolant",
+    "interval_km": 12000,
+    "interval_days": 365,
+    "labor_hours": 0.4,
+    "parts": [
+      "CON-COOLANT"
+    ]
+  },
+  {
+    "id": "klep",
+    "name": "Cek & Setel Klep",
+    "interval_km": 18000,
+    "interval_days": 540,
+    "labor_hours": 1.0,
+    "parts": [
+      "ENG-VALVE-SEAL",
+      "ENG-GASKET-TOP"
+    ]
+  }
+]

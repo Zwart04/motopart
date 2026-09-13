@@ -1,0 +1,134 @@
+[
+  {
+    "id": "beat",
+    "brand": "Honda",
+    "model": "Beat",
+    "year": 2020,
+    "engine": "110cc",
+    "power": "6.6 kW",
+    "weight": 92,
+    "category": "matic",
+    "popularity": 95
+  },
+  {
+    "id": "vario",
+    "brand": "Honda",
+    "model": "Vario 125",
+    "year": 2021,
+    "engine": "125cc",
+    "power": "8.2 kW",
+    "weight": 109,
+    "category": "matic",
+    "popularity": 92
+  },
+  {
+    "id": "pcx",
+    "brand": "Honda",
+    "model": "PCX 150",
+    "year": 2022,
+    "engine": "150cc",
+    "power": "10.8 kW",
+    "weight": 131,
+    "category": "matic",
+    "popularity": 80
+  },
+  {
+    "id": "adv",
+    "brand": "Honda",
+    "model": "ADV 160",
+    "year": 2023,
+    "engine": "160cc",
+    "power": "11.8 kW",
+    "weight": 132,
+    "category": "matic",
+    "popularity": 75
+  },
+  {
+    "id": "scoopy",
+    "brand": "Honda",
+    "model": "Scoopy",
+    "year": 2022,
+    "engine": "110cc",
+    "power": "6.6 kW",
+    "weight": 94,
+    "category": "matic",
+    "popularity": 85
+  },
+  {
+    "id": "nmax",
+    "brand": "Yamaha",
+    "model": "NMAX 155",
+    "year": 2022,
+    "engine": "155cc",
+    "power": "11.3 kW",
+    "weight": 131,
+    "category": "matic",
+    "popularity": 93
+  },
+  {
+    "id": "aerox",
+    "brand": "Yamaha",
+    "model": "Aerox 155",
+    "year": 2022,
+    "engine": "155cc",
+    "power": "11.3 kW",
+    "weight": 125,
+    "category": "matic",
+    "popularity": 86
+  },
+  {
+    "id": "mio",
+    "brand": "Yamaha",
+    "model": "Mio M3",
+    "year": 2020,
+    "engine": "125cc",
+    "power": "7.0 kW",
+    "weight": 94,
+    "category": "matic",
+    "popularity": 78
+  },
+  {
+    "id": "supra",
+    "brand": "Honda",
+    "model": "Supra X 125",
+    "year": 2019,
+    "engine": "125cc",
+    "power": "7.4 kW",
+    "weight": 106,
+    "category": "sport",
+    "popularity": 70
+  },
+  {
+    "id": "cbr",
+    "brand": "Honda",
+    "model": "CBR 150R",
+    "year": 2021,
+    "engine": "150cc",
+    "power": "12.6 kW",
+    "weight": 135,
+    "category": "sport",
+    "popularity": 72
+  },
+  {
+    "id": "satria",
+    "brand": "Suzuki",
+    "model": "Satria F150",
+    "year": 2020,
+    "engine": "150cc",
+    "power": "13.6 kW",
+    "weight": 109,
+    "category": "sport",
+    "popularity": 65
+  },
+  {
+    "id": "ninja",
+    "brand": "Kawasaki",
+    "model": "Ninja 250",
+    "year": 2022,
+    "engine": "250cc",
+    "power": "23.5 kW",
+    "weight": 167,
+    "category": "sport",
+    "popularity": 68
+  }
+]

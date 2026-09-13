@@ -1,0 +1,1423 @@
+[
+  {
+    "sku": "ENG-OIL-10W30",
+    "name": "Engine Oil 10W-30 (1L)",
+    "category": "engine",
+    "subcategory": "lubricant",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 55000,
+    "stock": 42,
+    "market_median_idr": 58000
+  },
+  {
+    "sku": "ENG-OIL-20W40",
+    "name": "Engine Oil 20W-40 (1L)",
+    "category": "engine",
+    "subcategory": "lubricant",
+    "oem": true,
+    "fitments": [
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 65000,
+    "stock": 38,
+    "market_median_idr": 62000
+  },
+  {
+    "sku": "ENG-OIL-10W40-SYN",
+    "name": "Synthetic Oil 10W-40 (1L)",
+    "category": "engine",
+    "subcategory": "lubricant",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 120000,
+    "stock": 25,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "ENG-SPARK-NGK-CPR",
+    "name": "Spark Plug NGK CPR6EA",
+    "category": "engine",
+    "subcategory": "ignition",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "supra"
+    ],
+    "price_idr": 25000,
+    "stock": 120,
+    "market_median_idr": 22000
+  },
+  {
+    "sku": "ENG-SPARK-NGK-CR8",
+    "name": "Spark Plug NGK CR8E",
+    "category": "engine",
+    "subcategory": "ignition",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 35000,
+    "stock": 80,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "ENG-FILTER-AIR-BEAT",
+    "name": "Air Filter Beat/Vario",
+    "category": "engine",
+    "subcategory": "filter",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 45000,
+    "stock": 55,
+    "market_median_idr": 48000
+  },
+  {
+    "sku": "ENG-FILTER-AIR-NMAX",
+    "name": "Air Filter NMAX/Aerox",
+    "category": "engine",
+    "subcategory": "filter",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 55000,
+    "stock": 40,
+    "market_median_idr": 58000
+  },
+  {
+    "sku": "ENG-FILTER-AIR-CBR",
+    "name": "Air Filter CBR/Satria",
+    "category": "engine",
+    "subcategory": "filter",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 65000,
+    "stock": 30,
+    "market_median_idr": 70000
+  },
+  {
+    "sku": "ENG-PISTON-BEAT",
+    "name": "Piston Kit Beat 50mm",
+    "category": "engine",
+    "subcategory": "piston",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "scoopy"
+    ],
+    "price_idr": 280000,
+    "stock": 12,
+    "market_median_idr": 295000
+  },
+  {
+    "sku": "ENG-PISTON-NMAX",
+    "name": "Piston Kit NMAX 58mm",
+    "category": "engine",
+    "subcategory": "piston",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 380000,
+    "stock": 8,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "ENG-CARB-CLEAN",
+    "name": "Carburetor Cleaner Spray",
+    "category": "engine",
+    "subcategory": "chemical",
+    "oem": false,
+    "fitments": [
+      "supra",
+      "satria",
+      "cbr"
+    ],
+    "price_idr": 35000,
+    "stock": 60,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "ENG-THROTTLE-BODY",
+    "name": "Throttle Body Cleaner",
+    "category": "engine",
+    "subcategory": "chemical",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "vario"
+    ],
+    "price_idr": 55000,
+    "stock": 35,
+    "market_median_idr": 58000
+  },
+  {
+    "sku": "BRK-PAD-FRT-BEAT",
+    "name": "Front Brake Pad Beat/Vario",
+    "category": "brake",
+    "subcategory": "pad",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 45000,
+    "stock": 70,
+    "market_median_idr": 42000
+  },
+  {
+    "sku": "BRK-PAD-FRT-NMAX",
+    "name": "Front Brake Pad NMAX/Aerox",
+    "category": "brake",
+    "subcategory": "pad",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 55000,
+    "stock": 50,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "BRK-PAD-FRT-CBR",
+    "name": "Front Brake Pad CBR/Sport",
+    "category": "brake",
+    "subcategory": "pad",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 75000,
+    "stock": 35,
+    "market_median_idr": 78000
+  },
+  {
+    "sku": "BRK-PAD-RR-MATIC",
+    "name": "Rear Brake Pad Matic",
+    "category": "brake",
+    "subcategory": "pad",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 35000,
+    "stock": 85,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "BRK-DISC-FRT-BEAT",
+    "name": "Front Brake Disc Beat",
+    "category": "brake",
+    "subcategory": "disc",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 120000,
+    "stock": 20,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "BRK-DISC-FRT-NMAX",
+    "name": "Front Brake Disc NMAX",
+    "category": "brake",
+    "subcategory": "disc",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 160000,
+    "stock": 15,
+    "market_median_idr": 175000
+  },
+  {
+    "sku": "BRK-SHOE-RR-MATIC",
+    "name": "Rear Brake Shoe Matic",
+    "category": "brake",
+    "subcategory": "shoe",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 65000,
+    "stock": 45,
+    "market_median_idr": 62000
+  },
+  {
+    "sku": "BRK-CABLE-MATIC",
+    "name": "Brake Cable Matic",
+    "category": "brake",
+    "subcategory": "cable",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 25000,
+    "stock": 100,
+    "market_median_idr": 22000
+  },
+  {
+    "sku": "DRV-BELT-NMAX",
+    "name": "CVT Belt NMAX/Aerox",
+    "category": "drivetrain",
+    "subcategory": "belt",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 180000,
+    "stock": 22,
+    "market_median_idr": 195000
+  },
+  {
+    "sku": "DRV-BELT-BEAT",
+    "name": "CVT Belt Beat/Vario",
+    "category": "drivetrain",
+    "subcategory": "belt",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 135000,
+    "stock": 28,
+    "market_median_idr": 145000
+  },
+  {
+    "sku": "DRV-ROLLER-NMAX",
+    "name": "Roller Weight NMAX Set",
+    "category": "drivetrain",
+    "subcategory": "roller",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 85000,
+    "stock": 40,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "DRV-ROLLER-BEAT",
+    "name": "Roller Weight Beat Set",
+    "category": "drivetrain",
+    "subcategory": "roller",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 65000,
+    "stock": 50,
+    "market_median_idr": 62000
+  },
+  {
+    "sku": "DRV-PULLEY-FRT-NMAX",
+    "name": "Primary Pulley NMAX",
+    "category": "drivetrain",
+    "subcategory": "pulley",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 250000,
+    "stock": 10,
+    "market_median_idr": 265000
+  },
+  {
+    "sku": "DRV-PULLEY-RR-NMAX",
+    "name": "Secondary Pulley NMAX",
+    "category": "drivetrain",
+    "subcategory": "pulley",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 280000,
+    "stock": 8,
+    "market_median_idr": 295000
+  },
+  {
+    "sku": "DRV-CHAIN-428",
+    "name": "Chain 428H (Sport)",
+    "category": "drivetrain",
+    "subcategory": "chain",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja",
+      "supra"
+    ],
+    "price_idr": 145000,
+    "stock": 18,
+    "market_median_idr": 155000
+  },
+  {
+    "sku": "DRV-SPROCKET-FRT-428",
+    "name": "Front Sprocket 428 (14T)",
+    "category": "drivetrain",
+    "subcategory": "sprocket",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja",
+      "supra"
+    ],
+    "price_idr": 75000,
+    "stock": 25,
+    "market_median_idr": 72000
+  },
+  {
+    "sku": "DRV-SPROCKET-RR-428",
+    "name": "Rear Sprocket 428 (42T)",
+    "category": "drivetrain",
+    "subcategory": "sprocket",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja",
+      "supra"
+    ],
+    "price_idr": 125000,
+    "stock": 20,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "ELE-BATT-YTZ5S",
+    "name": "Battery YTZ5S (Matic)",
+    "category": "electrical",
+    "subcategory": "battery",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 280000,
+    "stock": 30,
+    "market_median_idr": 295000
+  },
+  {
+    "sku": "ELE-BATT-YTZ7S",
+    "name": "Battery YTZ7S (Sport)",
+    "category": "electrical",
+    "subcategory": "battery",
+    "oem": true,
+    "fitments": [
+      "cbr",
+      "satria",
+      "ninja",
+      "supra"
+    ],
+    "price_idr": 350000,
+    "stock": 22,
+    "market_median_idr": 365000
+  },
+  {
+    "sku": "ELE-BULB-LED-H4",
+    "name": "LED Headlight H4",
+    "category": "electrical",
+    "subcategory": "bulb",
+    "oem": false,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "supra",
+      "satria"
+    ],
+    "price_idr": 85000,
+    "stock": 60,
+    "market_median_idr": 78000
+  },
+  {
+    "sku": "ELE-BULB-LED-H6",
+    "name": "LED Headlight H6",
+    "category": "electrical",
+    "subcategory": "bulb",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "cbr",
+      "ninja"
+    ],
+    "price_idr": 120000,
+    "stock": 45,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "ELE-CDI-NMAX",
+    "name": "CDI Unit NMAX",
+    "category": "electrical",
+    "subcategory": "ecu",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 450000,
+    "stock": 6,
+    "market_median_idr": 475000
+  },
+  {
+    "sku": "ELE-RELAY-START",
+    "name": "Starter Relay Universal",
+    "category": "electrical",
+    "subcategory": "relay",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 35000,
+    "stock": 80,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "ELE-FUSE-SET",
+    "name": "Fuse Set (5 pcs)",
+    "category": "electrical",
+    "subcategory": "fuse",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 15000,
+    "stock": 150,
+    "market_median_idr": 12000
+  },
+  {
+    "sku": "BDY-MIRROR-LH",
+    "name": "Mirror Left Universal",
+    "category": "body",
+    "subcategory": "mirror",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 55000,
+    "stock": 40,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "BDY-MIRROR-RH",
+    "name": "Mirror Right Universal",
+    "category": "body",
+    "subcategory": "mirror",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 55000,
+    "stock": 40,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "BDY-HANDLE-RH",
+    "name": "Right Handgrip",
+    "category": "body",
+    "subcategory": "grip",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 25000,
+    "stock": 90,
+    "market_median_idr": 22000
+  },
+  {
+    "sku": "BDY-HANDLE-LH",
+    "name": "Left Handgrip",
+    "category": "body",
+    "subcategory": "grip",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 25000,
+    "stock": 90,
+    "market_median_idr": 22000
+  },
+  {
+    "sku": "BDY-SEAT-COVER-UNIV",
+    "name": "Seat Cover Universal",
+    "category": "body",
+    "subcategory": "seat",
+    "oem": false,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 120000,
+    "stock": 25,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "BDY-FENDER-FRT",
+    "name": "Front Fender Matic",
+    "category": "body",
+    "subcategory": "fender",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 180000,
+    "stock": 15,
+    "market_median_idr": 195000
+  },
+  {
+    "sku": "BDY-FENDER-RR-NMAX",
+    "name": "Rear Fender NMAX",
+    "category": "body",
+    "subcategory": "fender",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 220000,
+    "stock": 10,
+    "market_median_idr": 235000
+  },
+  {
+    "sku": "BDY-SIDE-COVER-LH",
+    "name": "Left Side Cover",
+    "category": "body",
+    "subcategory": "cover",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 95000,
+    "stock": 22,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "BDY-SIDE-COVER-RH",
+    "name": "Right Side Cover",
+    "category": "body",
+    "subcategory": "cover",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 95000,
+    "stock": 22,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "SUS-SHOCK-RR-MATIC",
+    "name": "Rear Shock Matic (Pair)",
+    "category": "suspension",
+    "subcategory": "shock",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 280000,
+    "stock": 14,
+    "market_median_idr": 295000
+  },
+  {
+    "sku": "SUS-SHOCK-RR-NMAX",
+    "name": "Rear Shock NMAX (Pair)",
+    "category": "suspension",
+    "subcategory": "shock",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 380000,
+    "stock": 8,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "SUS-FORK-OIL",
+    "name": "Fork Oil 10W (500ml)",
+    "category": "suspension",
+    "subcategory": "oil",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 35000,
+    "stock": 60,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "SUS-BEARING-STEERING",
+    "name": "Steering Bearing Set",
+    "category": "suspension",
+    "subcategory": "bearing",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 85000,
+    "stock": 25,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "TRE-FRT-90-80-MATIC",
+    "name": "Front Tire 90/80-14 Matic",
+    "category": "tire",
+    "subcategory": "front",
+    "oem": false,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 225000,
+    "stock": 20,
+    "market_median_idr": 215000
+  },
+  {
+    "sku": "TRE-FRT-110-70-NMAX",
+    "name": "Front Tire 110/70-13 NMAX",
+    "category": "tire",
+    "subcategory": "front",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 385000,
+    "stock": 12,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "TRE-FRT-90-80-SPORT",
+    "name": "Front Tire 90/80-17 Sport",
+    "category": "tire",
+    "subcategory": "front",
+    "oem": false,
+    "fitments": [
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 295000,
+    "stock": 15,
+    "market_median_idr": 285000
+  },
+  {
+    "sku": "TRE-RR-100-90-MATIC",
+    "name": "Rear Tire 100/90-14 Matic",
+    "category": "tire",
+    "subcategory": "rear",
+    "oem": false,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 295000,
+    "stock": 18,
+    "market_median_idr": 285000
+  },
+  {
+    "sku": "TRE-RR-130-70-NMAX",
+    "name": "Rear Tire 130/70-13 NMAX",
+    "category": "tire",
+    "subcategory": "rear",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 485000,
+    "stock": 10,
+    "market_median_idr": 495000
+  },
+  {
+    "sku": "TRE-RR-120-70-SPORT",
+    "name": "Rear Tire 120/70-17 Sport",
+    "category": "tire",
+    "subcategory": "rear",
+    "oem": false,
+    "fitments": [
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 395000,
+    "stock": 12,
+    "market_median_idr": 385000
+  },
+  {
+    "sku": "TRE-TUBE-14",
+    "name": "Inner Tube 14 inch",
+    "category": "tire",
+    "subcategory": "tube",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 45000,
+    "stock": 50,
+    "market_median_idr": 42000
+  },
+  {
+    "sku": "TRE-TUBE-17",
+    "name": "Inner Tube 17 inch",
+    "category": "tire",
+    "subcategory": "tube",
+    "oem": true,
+    "fitments": [
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 55000,
+    "stock": 40,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "TOL-SOCKET-SET",
+    "name": "Socket Set 24 pcs",
+    "category": "tool",
+    "subcategory": "socket",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 185000,
+    "stock": 12,
+    "market_median_idr": 195000
+  },
+  {
+    "sku": "TOL-WRENCH-SET",
+    "name": "Wrench Set 12 pcs",
+    "category": "tool",
+    "subcategory": "wrench",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 145000,
+    "stock": 15,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "TOL-TORQUE-WRENCH",
+    "name": "Torque Wrench",
+    "category": "tool",
+    "subcategory": "torque",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 385000,
+    "stock": 8,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "CON-GREASE",
+    "name": "Multi-Purpose Grease",
+    "category": "consumable",
+    "subcategory": "grease",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 45000,
+    "stock": 80,
+    "market_median_idr": 42000
+  },
+  {
+    "sku": "CON-CONTACT-CLEAN",
+    "name": "Contact Cleaner Spray",
+    "category": "consumable",
+    "subcategory": "chemical",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 55000,
+    "stock": 50,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "CON-SILICONE-SEAL",
+    "name": "Silicone Sealant",
+    "category": "consumable",
+    "subcategory": "sealant",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 35000,
+    "stock": 70,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "CON-COOLANT",
+    "name": "Coolant 1L",
+    "category": "consumable",
+    "subcategory": "coolant",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "cbr",
+      "ninja"
+    ],
+    "price_idr": 65000,
+    "stock": 40,
+    "market_median_idr": 62000
+  },
+  {
+    "sku": "CVT-WEIGHT-CLICK",
+    "name": "Click Weight Set",
+    "category": "cvt",
+    "subcategory": "weight",
+    "oem": false,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 95000,
+    "stock": 30,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "CVT-SLIDER-PULLEY",
+    "name": "Slider Pulley NMAX",
+    "category": "cvt",
+    "subcategory": "slider",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 185000,
+    "stock": 12,
+    "market_median_idr": 195000
+  },
+  {
+    "sku": "CVT-CLUTCH-SHOE",
+    "name": "Clutch Shoe Set",
+    "category": "cvt",
+    "subcategory": "shoe",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 165000,
+    "stock": 18,
+    "market_median_idr": 175000
+  },
+  {
+    "sku": "CVT-DRIVE-FACE",
+    "name": "Drive Face Assembly",
+    "category": "cvt",
+    "subcategory": "face",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 320000,
+    "stock": 8,
+    "market_median_idr": 335000
+  },
+  {
+    "sku": "BDY-PANEL-FRT-BEAT",
+    "name": "Front Panel Beat",
+    "category": "body",
+    "subcategory": "panel",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario"
+    ],
+    "price_idr": 250000,
+    "stock": 10,
+    "market_median_idr": 265000
+  },
+  {
+    "sku": "BDY-PANEL-RR-NMAX",
+    "name": "Rear Body Panel NMAX",
+    "category": "body",
+    "subcategory": "panel",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 380000,
+    "stock": 6,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "BDY-TAIL-LIGHT-LED",
+    "name": "LED Tail Light Universal",
+    "category": "body",
+    "subcategory": "light",
+    "oem": false,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 145000,
+    "stock": 25,
+    "market_median_idr": 135000
+  },
+  {
+    "sku": "BDY-TANK-CAP-UNIV",
+    "name": "Fuel Tank Cap Universal",
+    "category": "body",
+    "subcategory": "cap",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 45000,
+    "stock": 35,
+    "market_median_idr": 42000
+  },
+  {
+    "sku": "BDY-FOOTREST-RR",
+    "name": "Rear Footrest (Pair)",
+    "category": "body",
+    "subcategory": "footrest",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv"
+    ],
+    "price_idr": 55000,
+    "stock": 30,
+    "market_median_idr": 52000
+  },
+  {
+    "sku": "ENG-GASKET-TOP",
+    "name": "Top Gasket Set",
+    "category": "engine",
+    "subcategory": "gasket",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio"
+    ],
+    "price_idr": 85000,
+    "stock": 20,
+    "market_median_idr": 88000
+  },
+  {
+    "sku": "ENG-VALVE-SEAL",
+    "name": "Valve Seal Set",
+    "category": "engine",
+    "subcategory": "valve",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 45000,
+    "stock": 40,
+    "market_median_idr": 42000
+  },
+  {
+    "sku": "ENG-CLUTCH-CABLE",
+    "name": "Clutch Cable Sport",
+    "category": "engine",
+    "subcategory": "cable",
+    "oem": true,
+    "fitments": [
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 35000,
+    "stock": 35,
+    "market_median_idr": 32000
+  },
+  {
+    "sku": "ENG-THROTTLE-CABLE",
+    "name": "Throttle Cable",
+    "category": "engine",
+    "subcategory": "cable",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 25000,
+    "stock": 60,
+    "market_median_idr": 22000
+  },
+  {
+    "sku": "BDY-PANEL-CTR-NMAX",
+    "name": "Center Body Panel NMAX",
+    "category": "body",
+    "subcategory": "panel",
+    "oem": true,
+    "fitments": [
+      "nmax",
+      "aerox"
+    ],
+    "price_idr": 350000,
+    "stock": 7,
+    "market_median_idr": 365000
+  },
+  {
+    "sku": "ENG-CLUTCH-BELL",
+    "name": "Clutch Bell Housing",
+    "category": "cvt",
+    "subcategory": "bell",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 220000,
+    "stock": 9,
+    "market_median_idr": 235000
+  },
+  {
+    "sku": "ELE-SPEEDO-DIGITAL",
+    "name": "Digital Speedometer",
+    "category": "electrical",
+    "subcategory": "meter",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy"
+    ],
+    "price_idr": 385000,
+    "stock": 5,
+    "market_median_idr": 400000
+  },
+  {
+    "sku": "TRE-VALVE-STEM",
+    "name": "Tire Valve Stem (5 pcs)",
+    "category": "tire",
+    "subcategory": "valve",
+    "oem": true,
+    "fitments": [
+      "beat",
+      "vario",
+      "scoopy",
+      "mio",
+      "nmax",
+      "aerox",
+      "pcx",
+      "adv",
+      "supra",
+      "cbr",
+      "satria",
+      "ninja"
+    ],
+    "price_idr": 25000,
+    "stock": 100,
+    "market_median_idr": 22000
+  }
+]

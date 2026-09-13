@@ -1,0 +1,268 @@
+[
+  {
+    "id": "engine-hard-start",
+    "symptom": "Mesin Susah Start",
+    "category": "engine",
+    "root": {
+      "question": "Apakah mesin sama sekali tidak bunyi cranking?",
+      "yes": {
+        "cause": "Aki lemah / rusak",
+        "parts_to_inspect": [
+          "ELE-BATT-YTZ5S",
+          "ELE-RELAY-START"
+        ],
+        "labor_hours": 0.5,
+        "severity": "medium"
+      },
+      "no": {
+        "question": "Apakah busi basah / tidak ada percikan?",
+        "yes": {
+          "cause": "S rusak / busi mati / CDI rusak",
+          "parts_to_inspect": [
+            "ENG-SPARK-NGK-CPR",
+            "ENG-SPARK-NGK-CR8",
+            "ELE-CDI-NMAX"
+          ],
+          "labor_hours": 0.8,
+          "severity": "high"
+        },
+        "no": {
+          "question": "Apakah ada bau bensin menyengat?",
+          "yes": {
+            "cause": "Karburator kotor / choke macet (motor karburator)",
+            "parts_to_inspect": [
+              "ENG-CARB-CLEAN",
+              "ENG-FILTER-AIR-BEAT",
+              "ENG-FILTER-AIR-NMAX"
+            ],
+            "labor_hours": 1.0,
+            "severity": "medium"
+          },
+          "no": {
+            "cause": "Sistem bahan bakar perlu pengecekan (injektor / pompa)",
+            "parts_to_inspect": [
+              "ENG-THROTTLE-BODY",
+              "ENG-FILTER-AIR-CBR"
+            ],
+            "labor_hours": 1.5,
+            "severity": "medium"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "engine-misfire",
+    "symptom": "Mesin Brebet / Misfire",
+    "category": "engine",
+    "root": {
+      "question": "Apakah brebet di semua RPM atau hanya RPM tinggi?",
+      "yes": {
+        "cause": "Busi aus / koil lemah / injektor kotor",
+        "parts_to_inspect": [
+          "ENG-SPARK-NGK-CPR",
+          "ENG-SPARK-NGK-CR8",
+          "ENG-THROTTLE-BODY"
+        ],
+        "labor_hours": 1.0,
+        "severity": "high"
+      },
+      "no": {
+        "question": "Apakah brebet saat RPM tinggi + suara knalpot tidak stabil?",
+        "yes": {
+          "cause": "Filter udara kotor / bahan bakar kurang / klep renggang",
+          "parts_to_inspect": [
+            "ENG-FILTER-AIR-BEAT",
+            "ENG-FILTER-AIR-NMAX",
+            "ENG-VALVE-SEAL"
+          ],
+          "labor_hours": 1.2,
+          "severity": "medium"
+        },
+        "no": {
+          "cause": "Sensor posisi throttle / sensor O2 perlu dicek (FI)",
+          "parts_to_inspect": [
+            "ELE-CDI-NMAX",
+            "ENG-THROTTLE-BODY"
+          ],
+          "labor_hours": 1.5,
+          "severity": "medium"
+        }
+      }
+    }
+  },
+  {
+    "id": "brake-weak",
+    "symptom": "Rem Blong / Kurang Pakem",
+    "category": "brake",
+    "root": {
+      "question": "Apakah rem depan atau rem belakang yang lemah?",
+      "yes": {
+        "question": "Apakah pedal rem terlalu dalam / butuh pompa berulang?",
+        "yes": {
+          "cause": "Master rem bocor / seal rem rusak",
+          "parts_to_inspect": [
+            "BRK-PAD-FRT-BEAT",
+            "BRK-PAD-FRT-NMAX"
+          ],
+          "labor_hours": 1.5,
+          "severity": "high"
+        },
+        "no": {
+          "cause": "Pad rem habis / disc aus",
+          "parts_to_inspect": [
+            "BRK-PAD-FRT-BEAT",
+            "BRK-PAD-FRT-NMAX",
+            "BRK-DISC-FRT-BEAT",
+            "BRK-DISC-FRT-NMAX"
+          ],
+          "labor_hours": 0.8,
+          "severity": "high"
+        }
+      },
+      "no": {
+        "question": "Apakah rem bunyi decit saat ditekan?",
+        "yes": {
+          "cause": "Pad rem habis / ada kerikil di antara pad dan disc",
+          "parts_to_inspect": [
+            "BRK-PAD-RR-MATIC",
+            "BRK-SHOE-RR-MATIC"
+          ],
+          "labor_hours": 0.6,
+          "severity": "medium"
+        },
+        "no": {
+          "cause": "Sistem hidrolik perlu bleeding / minyak rem kotor",
+          "parts_to_inspect": [
+            "CON-CONTACT-CLEAN",
+            "BRK-CABLE-MATIC"
+          ],
+          "labor_hours": 0.5,
+          "severity": "low"
+        }
+      }
+    }
+  },
+  {
+    "id": "cvt-slip",
+    "symptom": "CVT Slip / Torsi Tidak Lolos",
+    "category": "drivetrain",
+    "root": {
+      "question": "Apakah slip terjadi saat akselerasi dari diam?",
+      "yes": {
+        "cause": "V-belt aus / roller aus / slider rusak",
+        "parts_to_inspect": [
+          "DRV-BELT-BEAT",
+          "DRV-BELT-NMAX",
+          "DRV-ROLLER-BEAT",
+          "DRV-ROLLER-NMAX",
+          "CVT-SLIDER-PULLEY"
+        ],
+        "labor_hours": 1.5,
+        "severity": "high"
+      },
+      "no": {
+        "question": "Apakah terdengar bunyi getaran / dengung di CVT?",
+        "yes": {
+          "cause": "Bearing pulley rusak / shaft aus",
+          "parts_to_inspect": [
+            "DRV-PULLEY-FRT-NMAX",
+            "DRV-PULLEY-RR-NMAX",
+            "CVT-DRIVE-FACE"
+          ],
+          "labor_hours": 2.0,
+          "severity": "high"
+        },
+        "no": {
+          "cause": "Kampas kopling aus (motor kopling manual)",
+          "parts_to_inspect": [
+            "CVT-CLUTCH-SHOE",
+            "DRV-CHAIN-428"
+          ],
+          "labor_hours": 1.5,
+          "severity": "medium"
+        }
+      }
+    }
+  },
+  {
+    "id": "electrical-dead",
+    "symptom": "Lampu / Kelistrikan Mati",
+    "category": "electrical",
+    "root": {
+      "question": "Apakah aki baru dicharge tapi masih mati?",
+      "yes": {
+        "cause": "Aki rusak / kiprok tidak mengisi",
+        "parts_to_inspect": [
+          "ELE-BATT-YTZ5S",
+          "ELE-BATT-YTZ7S",
+          "ELE-RELAY-START"
+        ],
+        "labor_hours": 0.6,
+        "severity": "medium"
+      },
+      "no": {
+        "question": "Apakah lampu tertentu saja yang mati?",
+        "yes": {
+          "cause": "Bohlam putus / relay rusak",
+          "parts_to_inspect": [
+            "ELE-BULB-LED-H4",
+            "ELE-BULB-LED-H6",
+            "ELE-FUSE-SET"
+          ],
+          "labor_hours": 0.3,
+          "severity": "low"
+        },
+        "no": {
+          "cause": "Kabel grounding kendur / soket kendor",
+          "parts_to_inspect": [
+            "CON-CONTACT-CLEAN",
+            "ELE-FUSE-SET"
+          ],
+          "labor_hours": 0.8,
+          "severity": "low"
+        }
+      }
+    }
+  },
+  {
+    "id": "suspension-rough",
+    "symptom": "Suspensi Keras / Tidak Nyaman",
+    "category": "suspension",
+    "root": {
+      "question": "Apakah shockbreaker belakang atau depan yang keras?",
+      "yes": {
+        "cause": "Shockbreaker aus / seal bocor",
+        "parts_to_inspect": [
+          "SUS-SHOCK-RR-MATIC",
+          "SUS-SHOCK-RR-NMAX",
+          "SUS-FORK-OIL"
+        ],
+        "labor_hours": 1.5,
+        "severity": "medium"
+      },
+      "no": {
+        "question": "Apakah setang bergetar di kecepatan tinggi?",
+        "yes": {
+          "cause": "Bearing steering aus / bushing arm aus",
+          "parts_to_inspect": [
+            "SUS-BEARING-STEERING",
+            "CON-GREASE"
+          ],
+          "labor_hours": 1.0,
+          "severity": "medium"
+        },
+        "no": {
+          "cause": "Tekanan ban tidak sesuai / ban aus tidak rata",
+          "parts_to_inspect": [
+            "TRE-FRT-90-80-MATIC",
+            "TRE-FRT-110-70-NMAX",
+            "TRE-FRT-90-80-SPORT"
+          ],
+          "labor_hours": 0.3,
+          "severity": "low"
+        }
+      }
+    }
+  }
+]
